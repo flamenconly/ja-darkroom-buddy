@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.thomasringhofer.jadarkroombuddy.MainActivity">
+
+    <LinearLayout android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TableLayout android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:collapseColumns="true"
+
+            >
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                >
+
+                <Button
+                    android:id="@+id/recent_prcesses_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/recent_processes" />
+
+                <Button
+                    android:id="@+id/manage_processes_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/manage_processes" />
+
+            </TableRow>
+
+        </TableLayout>
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>
