@@ -2,7 +2,6 @@ package com.thomasringhofer.jadarkroombuddy.entities;
 
 import com.google.gson.Gson;
 
-import java.time.LocalDateTime;
 
 /**
  * Representation of a Developmentprocess.
@@ -31,7 +30,6 @@ public class Process implements JsonSerializable<Process> {
         }else{
             throw new IllegalArgumentException("type is unknown");
         }
-
     }
 
     private String id;
@@ -54,15 +52,20 @@ public class Process implements JsonSerializable<Process> {
         this.title = title;
     }
 
-    private LocalDateTime creationDate;
+    private Long creationTimestamp;
 
-    public LocalDateTime getCreationDate() {
-        return creationDate;
+    public Long getCreationTimestamp() {
+        return creationTimestamp;
     }
 
-    public void setCreationDate(LocalDateTime creationDate) {
-        this.creationDate = creationDate;
+    public void setCreationTimestamp(Long creationTimestamp) {
+        this.creationTimestamp = creationTimestamp;
     }
+
+    /**
+     * Processes can only
+     */
+    Process(){}
 
     public Process deserialize(String jsonValue) {
         Gson gson = new Gson();
@@ -87,7 +90,7 @@ public class Process implements JsonSerializable<Process> {
             Process incoming = (Process)obj;
             result &= this.getTitle().equals(incoming.getTitle());
             result &= this.getId().equals(incoming.getId());
-            result &= this.getCreationDate().equals(incoming.getCreationDate());
+            result &= this.getCreationTimestamp().equals(incoming.getCreationTimestamp());
             result &= this.getType().equals(incoming.getType());
 
         }else{

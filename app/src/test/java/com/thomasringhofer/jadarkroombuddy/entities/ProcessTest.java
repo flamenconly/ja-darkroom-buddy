@@ -1,11 +1,7 @@
 package com.thomasringhofer.jadarkroombuddy.entities;
 
-import org.junit.Assert;
-import org.junit.AssumptionViolatedException;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.time.LocalDateTime;
 
 import static org.junit.Assert.*;
 
@@ -21,12 +17,12 @@ public class ProcessTest {
 
     @Before
     public void setUp(){
-        serializedObject =  "{\"type\":\"Negative\",\"id\":\"id\",\"title\":\"test\",\"creationDate\":{\"date\":{\"year\":2028,\"month\":1,\"day\":1},\"time\":{\"hour\":20,\"minute\":50,\"second\":0,\"nano\":0}}}";
+        serializedObject =  "{\"type\":\"Negative\",\"id\":\"id\",\"title\":\"test\",\"creationTimestamp\":1830372600000}";
         deserializedObject = new Process();
         deserializedObject.setTitle("test");
         deserializedObject.setId("id");
         deserializedObject.setType(Process.TYPE_NEGATIVE);
-        deserializedObject.setCreationDate(LocalDateTime.of(2028,1,1,20,50));
+        deserializedObject.setCreationTimestamp(1830372600000l);
     }
 
     @Test
