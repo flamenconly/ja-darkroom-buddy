@@ -6,22 +6,22 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * Testclass for the object Process.
+ * Testclass for the object DevelopmentProcess.
  * Created by Thomas on 09.02.2018.
  */
 
-public class ProcessTest {
+public class DevelopmentProcessTest {
 
     private String serializedObject;
-    private Process deserializedObject;
+    private DevelopmentProcess deserializedObject;
 
     @Before
     public void setUp(){
         serializedObject =  "{\"type\":\"Negative\",\"id\":\"id\",\"title\":\"test\",\"creationTimestamp\":1830372600000}";
-        deserializedObject = new Process();
+        deserializedObject = new DevelopmentProcess();
         deserializedObject.setTitle("test");
         deserializedObject.setId("id");
-        deserializedObject.setType(Process.TYPE_NEGATIVE);
+        deserializedObject.setType(DevelopmentProcess.TYPE_NEGATIVE);
         deserializedObject.setCreationTimestamp(1830372600000l);
     }
 
@@ -34,25 +34,25 @@ public class ProcessTest {
 
     @Test
     public void deserialization_is_correct(){
-        Process awaitedProcess = deserializedObject;
+        DevelopmentProcess awaitedDevelopmentProcess = deserializedObject;
         String resultString =serializedObject;
-        Process resultProcess = new Process().deserialize(resultString);
-        assertEquals(awaitedProcess,resultProcess);
+        DevelopmentProcess resultDevelopmentProcess = new DevelopmentProcess().deserialize(resultString);
+        assertEquals(awaitedDevelopmentProcess, resultDevelopmentProcess);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void type_illegal_argument_exception() throws Exception{
-        Process process = new Process();
-        process.setType("totally wrong type");
+        DevelopmentProcess developmentProcess = new DevelopmentProcess();
+        developmentProcess.setType("totally wrong type");
     }
 
     @Test
     public void type_legal_arguments() throws Exception{
-        Process process = new Process();
-        process.setType(Process.TYPE_NEGATIVE);
-        assertEquals(process.getType(),Process.TYPE_NEGATIVE);
+        DevelopmentProcess developmentProcess = new DevelopmentProcess();
+        developmentProcess.setType(DevelopmentProcess.TYPE_NEGATIVE);
+        assertEquals(developmentProcess.getType(), DevelopmentProcess.TYPE_NEGATIVE);
 
-        process.setType(Process.TYPE_POSITIVE);
-        assertEquals(process.getType(),Process.TYPE_POSITIVE);
+        developmentProcess.setType(DevelopmentProcess.TYPE_POSITIVE);
+        assertEquals(developmentProcess.getType(), DevelopmentProcess.TYPE_POSITIVE);
     }
 }

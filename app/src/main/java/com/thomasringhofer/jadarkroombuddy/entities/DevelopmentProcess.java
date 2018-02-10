@@ -8,7 +8,7 @@ import com.google.gson.Gson;
  * Created by Thomas on 09.02.2018.
  */
 
-public class Process implements JsonSerializable<Process> {
+public class DevelopmentProcess implements JsonSerializable<DevelopmentProcess> {
 
     public static String TYPE_NEGATIVE = "Negative";
     public static String TYPE_POSITIVE = "Positive";
@@ -63,13 +63,13 @@ public class Process implements JsonSerializable<Process> {
     }
 
     /**
-     * Processes can only
+     * Instantiate via {@link DevelopmentProcessFactory}
      */
-    Process(){}
+    DevelopmentProcess(){}
 
-    public Process deserialize(String jsonValue) {
+    public DevelopmentProcess deserialize(String jsonValue) {
         Gson gson = new Gson();
-        Process instance = gson.fromJson(jsonValue,Process.class);
+        DevelopmentProcess instance = gson.fromJson(jsonValue,DevelopmentProcess.class);
         return instance;
     }
 
@@ -87,7 +87,7 @@ public class Process implements JsonSerializable<Process> {
 
         if(obj.getClass().equals(this.getClass()))
         {
-            Process incoming = (Process)obj;
+            DevelopmentProcess incoming = (DevelopmentProcess)obj;
             result &= this.getTitle().equals(incoming.getTitle());
             result &= this.getId().equals(incoming.getId());
             result &= this.getCreationTimestamp().equals(incoming.getCreationTimestamp());
