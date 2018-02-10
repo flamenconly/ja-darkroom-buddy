@@ -11,6 +11,29 @@ import java.time.LocalDateTime;
 
 public class Process implements JsonSerializable<Process> {
 
+    public static String TYPE_NEGATIVE = "Negative";
+    public static String TYPE_POSITIVE = "Positive";
+
+    private String type;
+
+    public String getType() {
+        return type;
+    }
+
+    /**
+     *
+     * @param type, One of the TYPE_* Constants is allowed
+     * @throws IllegalArgumentException if the given TYPE is not from one of the TYPE_* Constants
+     */
+    public void setType(String type) throws IllegalArgumentException {
+        if(type.equalsIgnoreCase(TYPE_NEGATIVE) || type.equalsIgnoreCase(TYPE_POSITIVE)){
+            this.type = type;
+        }else{
+            throw new IllegalArgumentException("type is unknown");
+        }
+
+    }
+
     private String id;
 
     public String getId() {
@@ -65,6 +88,7 @@ public class Process implements JsonSerializable<Process> {
             result &= this.getTitle().equals(incoming.getTitle());
             result &= this.getId().equals(incoming.getId());
             result &= this.getCreationDate().equals(incoming.getCreationDate());
+            result &= this.getType().equals(incoming.getType());
 
         }else{
             return false;
