@@ -1,5 +1,10 @@
 package com.thomasringhofer.jadarkroombuddy.entities;
 
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
+
 import com.google.gson.Gson;
 
 
@@ -7,13 +12,27 @@ import com.google.gson.Gson;
  * Representation of a Developmentprocess.
  * Created by Thomas on 09.02.2018.
  */
-
+@Entity(tableName = "development_process")
 public class DevelopmentProcess implements JsonSerializable<DevelopmentProcess> {
 
     public static String TYPE_NEGATIVE = "Negative";
     public static String TYPE_POSITIVE = "Positive";
 
+    @PrimaryKey(autoGenerate = true)
+    @NonNull
+    private long id;
+
+    @NonNull
+    @ColumnInfo(name = "type")
     private String type;
+
+    @NonNull
+    @ColumnInfo(name = "title")
+    private String title;
+
+    @NonNull
+    @ColumnInfo(name="create_timestamp")
+    private Long creationTimestamp;
 
     public String getType() {
         return type;
@@ -32,17 +51,13 @@ public class DevelopmentProcess implements JsonSerializable<DevelopmentProcess> 
         }
     }
 
-    private String id;
-
-    public String getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
-
-    private String title;
 
     public String getTitle() {
         return title;
@@ -51,8 +66,6 @@ public class DevelopmentProcess implements JsonSerializable<DevelopmentProcess> 
     public void setTitle(String title) {
         this.title = title;
     }
-
-    private Long creationTimestamp;
 
     public Long getCreationTimestamp() {
         return creationTimestamp;
@@ -65,7 +78,7 @@ public class DevelopmentProcess implements JsonSerializable<DevelopmentProcess> 
     /**
      * Instantiate via {@link DevelopmentProcessFactory}
      */
-    DevelopmentProcess(){}
+    public DevelopmentProcess(){}
 
     public DevelopmentProcess deserialize(String jsonValue) {
         Gson gson = new Gson();
@@ -89,7 +102,7 @@ public class DevelopmentProcess implements JsonSerializable<DevelopmentProcess> 
         {
             DevelopmentProcess incoming = (DevelopmentProcess)obj;
             result &= this.getTitle().equals(incoming.getTitle());
-            result &= this.getId().equals(incoming.getId());
+            result &= this.getId() ==incoming.getId();
             result &= this.getCreationTimestamp().equals(incoming.getCreationTimestamp());
             result &= this.getType().equals(incoming.getType());
 

@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.thomasringhofer.jadarkroombuddy.database.AppDatabase;
+
 public class MainActivity extends AppCompatActivity {
 
     Button recent_processes_btn;
@@ -15,6 +17,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Setup Database
+        AppDatabase.CreateInstance(getApplicationContext());
 
         recent_processes_btn = findViewById(R.id.recent_prcesses_btn);
         manage_processes_btn = findViewById(R.id.manage_processes_btn);

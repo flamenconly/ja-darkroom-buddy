@@ -8,23 +8,22 @@ import com.thomasringhofer.jadarkroombuddy.common.IIdGenerator;
  */
 public class DevelopmentProcessFactory {
 
-    public DevelopmentProcess CreateDefaultNegativeDevelopmentProcess(IIdGenerator idGenerator) throws IllegalArgumentException{
-        if(idGenerator==null)throw new IllegalArgumentException("idGenerator must not be null!");
-        DevelopmentProcess developmentProcess = createDefaultDevelopmentProcess(idGenerator);
+    public DevelopmentProcess CreateDefaultNegativeDevelopmentProcess() throws IllegalArgumentException{
+
+        DevelopmentProcess developmentProcess = createDefaultDevelopmentProcess();
         developmentProcess.setType(DevelopmentProcess.TYPE_NEGATIVE);
         return developmentProcess;
     }
 
-    public DevelopmentProcess CreateDefaultPositiveDevelopmentProcess(IIdGenerator idGenerator) throws IllegalArgumentException{
-        if(idGenerator==null)throw new IllegalArgumentException("idGenerator must not be null!");
-        DevelopmentProcess developmentProcess = createDefaultDevelopmentProcess(idGenerator);
+    public DevelopmentProcess CreateDefaultPositiveDevelopmentProcess() throws IllegalArgumentException{
+
+        DevelopmentProcess developmentProcess = createDefaultDevelopmentProcess();
         developmentProcess.setType(DevelopmentProcess.TYPE_POSITIVE);
         return developmentProcess;
     }
 
-    private DevelopmentProcess createDefaultDevelopmentProcess(IIdGenerator idGenerator) throws IllegalArgumentException{
+    private DevelopmentProcess createDefaultDevelopmentProcess() throws IllegalArgumentException{
         DevelopmentProcess developmentProcess = new DevelopmentProcess();
-        developmentProcess.setId(idGenerator.Generate());
         developmentProcess.setCreationTimestamp(System.currentTimeMillis());
 
         return developmentProcess;

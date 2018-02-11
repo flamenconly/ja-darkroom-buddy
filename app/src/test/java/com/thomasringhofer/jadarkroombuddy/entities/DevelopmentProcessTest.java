@@ -17,10 +17,10 @@ public class DevelopmentProcessTest {
 
     @Before
     public void setUp(){
-        serializedObject =  "{\"type\":\"Negative\",\"id\":\"id\",\"title\":\"test\",\"creationTimestamp\":1830372600000}";
+        serializedObject =  "{\"id\":1,\"type\":\"Negative\",\"title\":\"test\",\"creationTimestamp\":1830372600000}";
         deserializedObject = new DevelopmentProcess();
         deserializedObject.setTitle("test");
-        deserializedObject.setId("id");
+        deserializedObject.setId(1);
         deserializedObject.setType(DevelopmentProcess.TYPE_NEGATIVE);
         deserializedObject.setCreationTimestamp(1830372600000l);
     }
