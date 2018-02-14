@@ -5,9 +5,12 @@
     <item
         android:id="@+id/recent_processes"
         android:title="@string/recent_processes"
+        android:icon="@drawable/ic_content_book_2"
         app:showAsAction="always"
         />
     <item android:id="@+id/manage_processes"
-        android:title="@string/manage_processes" />
+        android:title="@string/manage_processes"
+        android:icon="@drawable/ic_beaker_science"
+        app:showAsAction="always"/>
 
 </menu>
