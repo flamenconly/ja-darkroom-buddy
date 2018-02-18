@@ -42,12 +42,17 @@ public class MainActivity extends AppCompatActivity implements DevelopmentProces
                 Intent intent;
 
                 switch (item.getItemId()){
+                    case R.id.add_process:
+                        intent = new Intent(MainActivity.this,AddDevelopmentProcessActivity.class);
+                        break;
+                    /*
                     case R.id.recent_processes:
                         intent = new Intent(MainActivity.this,RecentProcessesActivity.class);
                         break;
                     case R.id.manage_processes:
                         intent = new Intent(MainActivity.this,RecentProcessesActivity.class);
                         break;
+                        */
                     default:
                         return false;
                 }
