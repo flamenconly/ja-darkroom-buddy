@@ -1,5 +1,6 @@
 package com.thomasringhofer.jadarkroombuddy;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -81,6 +82,9 @@ public class MainActivity extends AppCompatActivity implements DevelopmentProces
 
     @Override
     public void onListFragmentInteraction(DevelopmentProcess item) {
-
+        AlertDialog.Builder dlgBuilder = new AlertDialog.Builder(this);
+        dlgBuilder.setMessage(item.getTitle());
+        dlgBuilder.setCancelable(true);
+        dlgBuilder.create().show();
     }
 }

@@ -33,8 +33,10 @@ public class DevelopmentProcessFragment extends Fragment {
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
-    private int mColumnCount = 2;
+    private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
+
+    private RecyclerView recyclerView;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -70,7 +72,7 @@ public class DevelopmentProcessFragment extends Fragment {
         // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
-            RecyclerView recyclerView = (RecyclerView) view;
+            recyclerView = (RecyclerView) view;
             if (mColumnCount <= 1) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
             } else {
@@ -82,6 +84,11 @@ public class DevelopmentProcessFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        new Thread(new LoadAllDevelopmentProcessTask(recyclerView)).start();
+    }
 
     @Override
     public void onAttach(Context context) {
@@ -129,8 +136,9 @@ public class DevelopmentProcessFragment extends Fragment {
 
             DevelopmentProcessDao dao = AppDatabase.GetInstance().developmentProcessDao();
             final List<DevelopmentProcess> items = new ArrayList<>();
-            if(Collections.addAll(items, dao.LoadAllProcesses())==false){
-                throw new IllegalStateException("Not all data loaded.");
+
+            for (DevelopmentProcess process:dao.LoadAllProcesses()) {
+                items.add(process);
             }
 
             recyclerView.post(new Runnable() {
@@ -139,8 +147,6 @@ public class DevelopmentProcessFragment extends Fragment {
                     recyclerView.setAdapter(new MyDevelopmentProcessRecyclerViewAdapter(items, mListener));
                 }
             });
-
-            dao = null;
         }
     }
 }
