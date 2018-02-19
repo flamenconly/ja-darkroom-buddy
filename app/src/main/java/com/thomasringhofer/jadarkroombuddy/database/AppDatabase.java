@@ -8,6 +8,8 @@ import android.support.annotation.NonNull;
 
 import com.thomasringhofer.jadarkroombuddy.entities.DevelopmentProcess;
 import com.thomasringhofer.jadarkroombuddy.entities.DevelopmentProcessFactory;
+import com.thomasringhofer.jadarkroombuddy.entities.Fluid;
+import com.thomasringhofer.jadarkroombuddy.entities.WorkingSolution;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -59,5 +61,39 @@ public abstract class AppDatabase extends RoomDatabase {
 
     }
 
+    /**
+     * Provides a convenient method for persisting a new or existing Workingsolution and it's
+     * content.
+     * @param workingSolution
+     * @return the persisted workingSolution
+     */
+    public WorkingSolution PersistWorkingSolution(@NonNull WorkingSolution workingSolution){
+        if(workingSolution.getContainedFluid()==null ||
+                workingSolution.getContainedFluid().size()==0){
+            throw new IllegalStateException("WorkingSolutions needs at least one fluid.");
+        }
+
+        for (Fluid fluid:workingSolution.getContainedFluid()) {
+            if(fluid.getId() == null){
+                fluidDao().insertFluid(fluid);
+            }else{
+                fluidDao().updateFluid(fluid);
+            }
+        }
+
+        if(workingSolution.getId()==null){
+            Integer newId =  workingSolutionDao().insertWorkingSolution(workingSolution);
+            workingSolution.setId(newId);
+        }else{
+            workingSolutionDao().updateWorkingSolution(workingSolution);
+        }
+
+        return workingSolution;
+    }
+
     public abstract DevelopmentProcessDao developmentProcessDao();
+
+    public abstract  WorkingSolutionDao workingSolutionDao();
+
+    public abstract FluidDao fluidDao();
 }

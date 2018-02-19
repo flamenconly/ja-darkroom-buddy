@@ -9,6 +9,7 @@ import android.support.test.runner.AndroidJUnit4;
 import com.thomasringhofer.jadarkroombuddy.common.IIdGenerator;
 import com.thomasringhofer.jadarkroombuddy.entities.DevelopmentProcess;
 import com.thomasringhofer.jadarkroombuddy.entities.DevelopmentProcessFactory;
+import com.thomasringhofer.jadarkroombuddy.entities.WorkingSolution;
 
 import junit.framework.Assert;
 
@@ -59,5 +60,12 @@ public class SimpleDatabaseTests {
 
         DevelopmentProcess[] processes = testDatabase.developmentProcessDao().LoadAllProcesses();
         Assert.assertEquals(process,processes[0]);
+    }
+
+    public void testInsertWorkingSolution(){
+        WorkingSolution workingSolution = new WorkingSolution();
+        workingSolution.setTitle("Title1");
+        workingSolution.setNotes("<strong>A lot of bold text</strong>");
+
     }
 }
