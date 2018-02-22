@@ -7,7 +7,6 @@ import android.support.annotation.NonNull;
 
 import com.google.gson.Gson;
 
-
 /**
  * Representation of a Developmentprocess.
  * Created by Thomas on 09.02.2018.

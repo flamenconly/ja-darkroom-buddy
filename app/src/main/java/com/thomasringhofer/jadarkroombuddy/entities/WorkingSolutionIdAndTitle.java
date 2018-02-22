@@ -7,7 +7,7 @@ import android.support.annotation.NonNull;
  */
 public class WorkingSolutionIdAndTitle {
     @NonNull
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -25,7 +25,7 @@ public class WorkingSolutionIdAndTitle {
     }
 
     @NonNull
-    private long id;
+    private Long id;
 
     @NonNull
     private String title;

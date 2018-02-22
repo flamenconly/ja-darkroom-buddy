@@ -9,17 +9,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 
 import com.thomasringhofer.jadarkroombuddy.database.AppDatabase;
 import com.thomasringhofer.jadarkroombuddy.database.DevelopmentProcessDao;
-import com.thomasringhofer.jadarkroombuddy.databinding.DevelopmentProcessItemBinding;
-import com.thomasringhofer.jadarkroombuddy.dummy.DummyContent;
-import com.thomasringhofer.jadarkroombuddy.dummy.DummyContent.DummyItem;
 import com.thomasringhofer.jadarkroombuddy.entities.DevelopmentProcess;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**

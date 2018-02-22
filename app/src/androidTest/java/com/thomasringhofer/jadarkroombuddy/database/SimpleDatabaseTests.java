@@ -9,6 +9,7 @@ import android.support.test.runner.AndroidJUnit4;
 import com.thomasringhofer.jadarkroombuddy.common.IIdGenerator;
 import com.thomasringhofer.jadarkroombuddy.entities.DevelopmentProcess;
 import com.thomasringhofer.jadarkroombuddy.entities.DevelopmentProcessFactory;
+import com.thomasringhofer.jadarkroombuddy.entities.Fluid;
 import com.thomasringhofer.jadarkroombuddy.entities.WorkingSolution;
 
 import junit.framework.Assert;
@@ -62,10 +63,14 @@ public class SimpleDatabaseTests {
         Assert.assertEquals(process,processes[0]);
     }
 
+    @Test
     public void testInsertWorkingSolution(){
         WorkingSolution workingSolution = new WorkingSolution();
         workingSolution.setTitle("Title1");
         workingSolution.setNotes("<strong>A lot of bold text</strong>");
 
+        long id = testDatabase.workingSolutionDao().insertWorkingSolution(workingSolution);
+
+        Assert.assertTrue(id >0);
     }
 }

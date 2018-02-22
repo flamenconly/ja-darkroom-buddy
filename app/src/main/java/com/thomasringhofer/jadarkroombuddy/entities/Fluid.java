@@ -14,11 +14,11 @@ public class Fluid {
 
     @PrimaryKey(autoGenerate = true)
     @NonNull
-    private Integer id;
+    private Long id;
 
-    public Integer getId(){return this.id;}
+    public Long getId(){return this.id;}
 
-    public void setId(Integer id){this.id = id;}
+    public void setId(Long id){this.id = id;}
 
     @NonNull
     @ColumnInfo(name = "title")
@@ -35,27 +35,10 @@ public class Fluid {
      */
     public void setTitle(String title){this.title = title;}
 
-    @NonNull
-    @ColumnInfo(name = "amount")
-    private Float amount;
-
-    /**
-     * The amount in litres of the total solution.
-     * @return amount
-     */
-    public  Float getAmount(){return this.amount;}
-
-    /**
-     * The amount in litres of the total solution.
-     * @param amount
-     */
-    public void setAmount(Float amount){this.amount = amount;}
-
     public Fluid(){}
 
-    public Fluid(String title, Float amount){
+    public Fluid(String title){
         this.title = title;
-        this.amount = amount;
     }
 
 }

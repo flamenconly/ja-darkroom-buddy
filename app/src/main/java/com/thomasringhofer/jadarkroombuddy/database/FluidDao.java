@@ -19,7 +19,7 @@ public interface FluidDao {
     long insertFluid(Fluid fluid);
 
     @Update(onConflict = OnConflictStrategy.FAIL)
-    Fluid updateFluid(Fluid fluid);
+    int updateFluid(Fluid fluid);
 
     @Delete
     void deleteFluid(Fluid fluid);

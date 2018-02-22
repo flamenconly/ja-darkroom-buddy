@@ -9,7 +9,10 @@ import android.support.annotation.NonNull;
 import com.thomasringhofer.jadarkroombuddy.entities.DevelopmentProcess;
 import com.thomasringhofer.jadarkroombuddy.entities.DevelopmentProcessFactory;
 import com.thomasringhofer.jadarkroombuddy.entities.Fluid;
+import com.thomasringhofer.jadarkroombuddy.entities.FluidInUse;
 import com.thomasringhofer.jadarkroombuddy.entities.WorkingSolution;
+import com.thomasringhofer.jadarkroombuddy.entities.WorkingSolutionAndItsFluids;
+import com.thomasringhofer.jadarkroombuddy.entities.WorkingSolutionHasFluid;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -21,7 +24,7 @@ import java.util.ListIterator;
 /**
  * Created by Thomas on 11.02.2018.
  */
-@Database(entities = {DevelopmentProcess.class},version = 1)
+@Database(entities = {DevelopmentProcess.class,WorkingSolution.class,Fluid.class,WorkingSolutionHasFluid.class},version = 1)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static AppDatabase INSTANCE;
@@ -61,34 +64,19 @@ public abstract class AppDatabase extends RoomDatabase {
 
     }
 
-    /**
-     * Provides a convenient method for persisting a new or existing Workingsolution and it's
-     * content.
-     * @param workingSolution
-     * @return the persisted workingSolution
-     */
-    public WorkingSolution PersistWorkingSolution(@NonNull WorkingSolution workingSolution){
-        if(workingSolution.getContainedFluid()==null ||
-                workingSolution.getContainedFluid().size()==0){
-            throw new IllegalStateException("WorkingSolutions needs at least one fluid.");
+    public WorkingSolutionAndItsFluids getWorkingSolutionAndItsFluidsById(long workingSolutionId){
+
+        WorkingSolutionAndItsFluids workingSolutionAndItsFluids = new WorkingSolutionAndItsFluids();
+        WorkingSolution workingSolution = workingSolutionDao().loadWorkingSolutionById(workingSolutionId);
+
+        if(workingSolution != null){
+            workingSolutionAndItsFluids.setWorkingSolution(workingSolution);
+
+            List<FluidInUse> fluids = workingSolutionHasFluidDao().getFluidOfWorkingSolution(workingSolution.getId());
+            workingSolutionAndItsFluids.setContainedFluids(fluids);
         }
 
-        for (Fluid fluid:workingSolution.getContainedFluid()) {
-            if(fluid.getId() == null){
-                fluidDao().insertFluid(fluid);
-            }else{
-                fluidDao().updateFluid(fluid);
-            }
-        }
-
-        if(workingSolution.getId()==null){
-            Integer newId =  workingSolutionDao().insertWorkingSolution(workingSolution);
-            workingSolution.setId(newId);
-        }else{
-            workingSolutionDao().updateWorkingSolution(workingSolution);
-        }
-
-        return workingSolution;
+        return workingSolutionAndItsFluids;
     }
 
     public abstract DevelopmentProcessDao developmentProcessDao();
@@ -96,4 +84,6 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract  WorkingSolutionDao workingSolutionDao();
 
     public abstract FluidDao fluidDao();
+
+    public abstract WorkingSolutionHasFluidDao workingSolutionHasFluidDao();
 }
