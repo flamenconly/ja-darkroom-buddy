@@ -10,7 +10,9 @@ import com.thomasringhofer.jadarkroombuddy.common.IIdGenerator;
 import com.thomasringhofer.jadarkroombuddy.entities.DevelopmentProcess;
 import com.thomasringhofer.jadarkroombuddy.entities.DevelopmentProcessFactory;
 import com.thomasringhofer.jadarkroombuddy.entities.Fluid;
+import com.thomasringhofer.jadarkroombuddy.entities.FluidInUse;
 import com.thomasringhofer.jadarkroombuddy.entities.WorkingSolution;
+import com.thomasringhofer.jadarkroombuddy.entities.WorkingSolutionAndItsFluids;
 
 import junit.framework.Assert;
 
@@ -18,6 +20,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import java.util.ArrayList;
 
 /**
  * Created by Thomas on 11.02.2018.
@@ -72,5 +76,71 @@ public class SimpleDatabaseTests {
         long id = testDatabase.workingSolutionDao().insertWorkingSolution(workingSolution);
 
         Assert.assertTrue(id >0);
+    }
+
+    @Test
+    public void testWorkingSolutionAndItsFluidsGetAmount(){
+        WorkingSolutionAndItsFluids workingSolutionAndItsFluids = SetupWorkingSolutionAndItsFluids();
+        Assert.assertEquals(workingSolutionAndItsFluids.getTotalAmount(),500f);
+    }
+
+    @Test
+    public void testInsertWorkingSolutionHasFluidsConvenientMethod(){
+        WorkingSolutionAndItsFluids workingSolutionAndItsFluids = SetupWorkingSolutionAndItsFluids();
+
+        boolean result = testDatabase.insertUpdateWorkingSolutionAndItsFluids(workingSolutionAndItsFluids);
+        Assert.assertTrue(result);
+
+        Assert.assertEquals(workingSolutionAndItsFluids.getWorkingSolution().getId(),new Long(1));
+
+        for (FluidInUse fluidInUse :
+                workingSolutionAndItsFluids.getContainedFluids()) {
+
+            Assert.assertTrue(fluidInUse.getId()>0);
+
+        }
+    }
+
+    @Test
+    public void testQueryWorkingSolutionHasFluidsConvenientMethod(){
+        WorkingSolutionAndItsFluids workingSolutionAndItsFluids = SetupWorkingSolutionAndItsFluids();
+
+        boolean result = testDatabase.insertUpdateWorkingSolutionAndItsFluids(workingSolutionAndItsFluids);
+        Assert.assertTrue(result);
+
+        WorkingSolutionAndItsFluids workingSolutionAndItsFluidsFromDB =
+                testDatabase.getWorkingSolutionAndItsFluidsById(
+                        workingSolutionAndItsFluids.getWorkingSolution().getId()
+                );
+
+        Assert.assertEquals(workingSolutionAndItsFluids.getWorkingSolution().getId(),
+                workingSolutionAndItsFluidsFromDB.getWorkingSolution().getId());
+
+        Assert.assertEquals(workingSolutionAndItsFluids.getWorkingSolution().getNotes(),
+                workingSolutionAndItsFluidsFromDB.getWorkingSolution().getNotes());
+
+        Assert.assertEquals(workingSolutionAndItsFluids.getWorkingSolution().getTitle(),
+                workingSolutionAndItsFluidsFromDB.getWorkingSolution().getTitle());
+
+        // The order can be different, so the amount is a high level test for the correct insert and query
+        Assert.assertEquals(workingSolutionAndItsFluids.getTotalAmount(),workingSolutionAndItsFluidsFromDB.getTotalAmount());
+
+    }
+
+    private WorkingSolutionAndItsFluids SetupWorkingSolutionAndItsFluids(){
+        WorkingSolutionAndItsFluids workingSolutionAndItsFluids = new WorkingSolutionAndItsFluids();
+
+        WorkingSolution workingSolution = new WorkingSolution();
+        workingSolution.setTitle("Title1");
+        workingSolution.setNotes("<strong>A lot of bold text</strong>");
+        workingSolutionAndItsFluids.setWorkingSolution(workingSolution);
+
+        workingSolutionAndItsFluids.setContainedFluids(new ArrayList<FluidInUse>());
+        workingSolutionAndItsFluids.getContainedFluids().add(new FluidInUse("Water",200f));
+        workingSolutionAndItsFluids.getContainedFluids().add(new FluidInUse("Colortec Part 1",100f));
+        workingSolutionAndItsFluids.getContainedFluids().add(new FluidInUse("Colortec Part 2",100f));
+        workingSolutionAndItsFluids.getContainedFluids().add(new FluidInUse("Colortec Part 3",100f));
+
+        return workingSolutionAndItsFluids;
     }
 }

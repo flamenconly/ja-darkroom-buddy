@@ -1,6 +1,5 @@
 package com.thomasringhofer.jadarkroombuddy.entities;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

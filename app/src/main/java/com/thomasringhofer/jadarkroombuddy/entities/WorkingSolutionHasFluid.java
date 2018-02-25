@@ -4,6 +4,7 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.Index;
+import android.support.annotation.NonNull;
 
 /**
  * Created by Thomas on 22.02.2018.
@@ -19,11 +20,11 @@ import android.arch.persistence.room.Index;
 )
 public class WorkingSolutionHasFluid {
 
-    public int getFluidId() {
+    public Long getFluidId() {
         return fluidId;
     }
 
-    public void setFluidId(int fluidId) {
+    public void setFluidId(Long fluidId) {
         this.fluidId = fluidId;
     }
 
@@ -35,20 +36,23 @@ public class WorkingSolutionHasFluid {
         this.amount = amount;
     }
 
-    public int getWorkingSolutionId() {
+    public Long getWorkingSolutionId() {
         return workingSolutionId;
     }
 
-    public void setWorkingSolutionId(int workingSolutionId) {
+    public void setWorkingSolutionId(Long workingSolutionId) {
         this.workingSolutionId = workingSolutionId;
     }
 
+    @NonNull
     @ColumnInfo(name = "working_solution_id")
-    private int workingSolutionId;
+    private Long workingSolutionId;
 
+    @NonNull
     @ColumnInfo(name = "fluid_id")
-    private int fluidId;
+    private Long fluidId;
 
+    @NonNull
     @ColumnInfo(name = "amount")
     private float amount;
 }
