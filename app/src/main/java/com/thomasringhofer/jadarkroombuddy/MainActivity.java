@@ -11,7 +11,12 @@ import android.view.MenuItem;
 import com.thomasringhofer.jadarkroombuddy.database.AppDatabase;
 import com.thomasringhofer.jadarkroombuddy.entities.DevelopmentProcess;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MainActivity extends AppCompatActivity implements DevelopmentProcessFragment.OnListFragmentInteractionListener {
+
+    @BindView(R.id.toolbar) Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +28,12 @@ public class MainActivity extends AppCompatActivity implements DevelopmentProces
         setContentView(R.layout.activity_main);
 
 
+        //Setup Widgets
+        //Toolbar toolbar = findViewById(R.id.toolbar);
+        ButterKnife.bind(this);
+
+        setSupportActionBar(toolbar);
+
         //TODO: Remove when developing is done to release mode
         new Thread(new Runnable() {
             @Override
@@ -30,10 +41,6 @@ public class MainActivity extends AppCompatActivity implements DevelopmentProces
                 AppDatabase.GetInstance().recreateData();
             }
         }).start();
-
-        //Setup Widgets
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
@@ -91,5 +98,6 @@ public class MainActivity extends AppCompatActivity implements DevelopmentProces
         dlgBuilder.setMessage(item.getTitle());
         dlgBuilder.setCancelable(true);
         dlgBuilder.create().show();
+
     }
 }
