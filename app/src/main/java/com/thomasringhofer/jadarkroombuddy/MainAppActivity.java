@@ -8,6 +8,8 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.widget.TableLayout;
 
 import com.thomasringhofer.jadarkroombuddy.adapter.MainAppPagerAdapter;
@@ -18,6 +20,9 @@ import butterknife.ButterKnife;
 public class MainAppActivity extends AppCompatActivity implements RecentDevelopmentProcessesFragment.OnFragmentInteractionListener,WorkingSolutionsFragment.OnFragmentInteractionListener {
 
     private MainAppPagerAdapter mainAppPagerAdapter;
+
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
 
     @BindView(R.id.main_pager)
     ViewPager myViewPager;
@@ -45,8 +50,18 @@ public class MainAppActivity extends AppCompatActivity implements RecentDevelopm
         myTabLayout.getTabAt(1).setIcon(R.drawable.ic_beaker_science);
 
         myTabLayout.addOnTabSelectedListener(new MyOnTabSelectedListener());
+
+        // Setup Toolbar
+        setSupportActionBar(toolbar);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.main_menu_resources,menu);
+
+        return true;
+    }
 
     @Override
     public void onFragmentInteraction(Uri uri) {
