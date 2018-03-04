@@ -1,5 +1,7 @@
 package com.thomasringhofer.jadarkroombuddy.entities;
 
+import com.thomasringhofer.jadarkroombuddy.model.WorkingSolutionAndItsFluids;
+
 import junit.framework.Assert;
 
 import org.junit.Test;

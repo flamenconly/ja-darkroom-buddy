@@ -8,7 +8,6 @@ import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 
 import com.thomasringhofer.jadarkroombuddy.entities.WorkingSolution;
-import com.thomasringhofer.jadarkroombuddy.entities.WorkingSolutionAndItsFluids;
 import com.thomasringhofer.jadarkroombuddy.entities.WorkingSolutionIdAndTitle;
 
 import java.util.List;

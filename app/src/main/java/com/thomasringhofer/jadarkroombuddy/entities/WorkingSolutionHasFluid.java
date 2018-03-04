@@ -45,11 +45,11 @@ public class WorkingSolutionHasFluid {
     }
 
     @NonNull
-    @ColumnInfo(name = "working_solution_id")
+    @ColumnInfo(name = "working_solution_id",index = true)
     private Long workingSolutionId;
 
     @NonNull
-    @ColumnInfo(name = "fluid_id")
+    @ColumnInfo(name = "fluid_id",index = true)
     private Long fluidId;
 
     @NonNull

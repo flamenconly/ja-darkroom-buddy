@@ -1,4 +1,7 @@
-package com.thomasringhofer.jadarkroombuddy.entities;
+package com.thomasringhofer.jadarkroombuddy.model;
+
+import com.thomasringhofer.jadarkroombuddy.entities.FluidInUse;
+import com.thomasringhofer.jadarkroombuddy.entities.WorkingSolution;
 
 import java.util.List;
 
@@ -10,7 +13,7 @@ public class WorkingSolutionAndItsFluids {
 
     public WorkingSolutionAndItsFluids(){}
 
-    public WorkingSolutionAndItsFluids(WorkingSolution workingSolution,List<FluidInUse> fluids){
+    public WorkingSolutionAndItsFluids(WorkingSolution workingSolution, List<FluidInUse> fluids){
         setWorkingSolution(workingSolution);
         setContainedFluids(fluids);
     }

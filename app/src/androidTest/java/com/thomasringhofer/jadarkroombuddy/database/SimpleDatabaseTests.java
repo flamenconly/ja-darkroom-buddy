@@ -6,13 +6,11 @@ import android.database.sqlite.SQLiteConstraintException;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 
-import com.thomasringhofer.jadarkroombuddy.common.IIdGenerator;
 import com.thomasringhofer.jadarkroombuddy.entities.DevelopmentProcess;
 import com.thomasringhofer.jadarkroombuddy.entities.DevelopmentProcessFactory;
-import com.thomasringhofer.jadarkroombuddy.entities.Fluid;
 import com.thomasringhofer.jadarkroombuddy.entities.FluidInUse;
 import com.thomasringhofer.jadarkroombuddy.entities.WorkingSolution;
-import com.thomasringhofer.jadarkroombuddy.entities.WorkingSolutionAndItsFluids;
+import com.thomasringhofer.jadarkroombuddy.model.WorkingSolutionAndItsFluids;
 
 import junit.framework.Assert;
 
