@@ -5,7 +5,6 @@ import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.arch.persistence.room.Transaction;
 import android.content.Context;
-import android.content.PeriodicSync;
 import android.support.annotation.NonNull;
 
 import com.thomasringhofer.jadarkroombuddy.entities.DevelopmentProcess;
@@ -13,7 +12,7 @@ import com.thomasringhofer.jadarkroombuddy.entities.DevelopmentProcessFactory;
 import com.thomasringhofer.jadarkroombuddy.entities.Fluid;
 import com.thomasringhofer.jadarkroombuddy.entities.FluidInUse;
 import com.thomasringhofer.jadarkroombuddy.entities.WorkingSolution;
-import com.thomasringhofer.jadarkroombuddy.entities.WorkingSolutionAndItsFluids;
+import com.thomasringhofer.jadarkroombuddy.model.WorkingSolutionAndItsFluids;
 import com.thomasringhofer.jadarkroombuddy.entities.WorkingSolutionHasFluid;
 import com.thomasringhofer.jadarkroombuddy.exceptions.PersistEntityFailedException;
 
