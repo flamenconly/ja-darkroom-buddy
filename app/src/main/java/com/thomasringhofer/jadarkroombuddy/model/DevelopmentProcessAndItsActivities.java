@@ -3,7 +3,6 @@ package com.thomasringhofer.jadarkroombuddy.model;
 /**
  * Created by Thomas on 03.03.2018.
  */
-
 public class DevelopmentProcessAndItsActivities {
 
     public String getTitle() {
@@ -14,15 +13,25 @@ public class DevelopmentProcessAndItsActivities {
         this.title = title;
     }
 
-    public String getType() {
-        return type;
+    public String getDescription() {
+        return description;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    private String type;
+    public String getDuration() {
+        return duration;
+    }
+
+    public void setDuration(String duration) {
+        this.duration = duration;
+    }
+
+    private String duration;
+
+    private String description;
 
     private String title;
 
