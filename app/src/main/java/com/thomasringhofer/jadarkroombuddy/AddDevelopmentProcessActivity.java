@@ -27,9 +27,7 @@ public class AddDevelopmentProcessActivity extends AppCompatActivity {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
 
-                Intent intent;
-
-                intent = new Intent(AddDevelopmentProcessActivity.this,MainActivity.class);
+                Intent intent = null;
                 if(intent!=null)startActivity(intent);
                 return true;
             }
