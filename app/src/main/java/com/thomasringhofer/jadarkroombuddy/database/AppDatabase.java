@@ -12,10 +12,12 @@ import com.thomasringhofer.jadarkroombuddy.entities.DevelopmentProcessFactory;
 import com.thomasringhofer.jadarkroombuddy.entities.Fluid;
 import com.thomasringhofer.jadarkroombuddy.entities.FluidInUse;
 import com.thomasringhofer.jadarkroombuddy.entities.WorkingSolution;
+import com.thomasringhofer.jadarkroombuddy.model.DevelopmentProcessAndItsActivities;
 import com.thomasringhofer.jadarkroombuddy.model.WorkingSolutionAndItsFluids;
 import com.thomasringhofer.jadarkroombuddy.entities.WorkingSolutionHasFluid;
 import com.thomasringhofer.jadarkroombuddy.exceptions.PersistEntityFailedException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -154,6 +156,23 @@ public abstract class AppDatabase extends RoomDatabase {
 
             workingSolutionHasFluidDao().insert(workingSolutionHasFluid);
         }
+    }
+
+    /**
+     * Convenience method for loading the {@link DevelopmentProcessAndItsActivities}.
+     * @return List with {@link DevelopmentProcessAndItsActivities}
+     */
+    public List<DevelopmentProcessAndItsActivities> getRecentProcessAndItsActivities(){
+
+        DevelopmentProcessAndItsActivities item = new DevelopmentProcessAndItsActivities();
+        item.setTitle("C41 Black White, T-Max 3200");
+        item.setDescription("Test text <s>T-Max 3200</s> plus anything and sowieso.");
+        item.setDuration("'5''20");
+
+        List<DevelopmentProcessAndItsActivities> list = new ArrayList<>();
+        list.add(item);
+
+        return list;
     }
 
     public abstract DevelopmentProcessDao developmentProcessDao();

@@ -1,8 +1,5 @@
 package com.thomasringhofer.jadarkroombuddy;
 
-import android.graphics.ColorFilter;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -10,14 +7,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
-import android.widget.TableLayout;
 
 import com.thomasringhofer.jadarkroombuddy.adapter.MainAppPagerAdapter;
+import com.thomasringhofer.jadarkroombuddy.database.AppDatabase;
+import com.thomasringhofer.jadarkroombuddy.model.DevelopmentProcessAndItsActivities;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainAppActivity extends AppCompatActivity implements RecentDevelopmentProcessesFragment.OnFragmentInteractionListener,WorkingSolutionsFragment.OnFragmentInteractionListener {
+public class MainAppActivity extends AppCompatActivity implements
+        RecentDevelopmentProcessesFragment.OnListFragmentInteractionListener,
+        WorkingSolutionsFragment.OnFragmentInteractionListener {
 
     private MainAppPagerAdapter mainAppPagerAdapter;
 
@@ -33,6 +33,9 @@ public class MainAppActivity extends AppCompatActivity implements RecentDevelopm
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        AppDatabase.CreateInstance(getApplicationContext());
+
         setContentView(R.layout.activity_main_app);
 
         // Initialize Binding
@@ -65,6 +68,11 @@ public class MainAppActivity extends AppCompatActivity implements RecentDevelopm
 
     @Override
     public void onFragmentInteraction(Uri uri) {
+
+    }
+
+    @Override
+    public void onFragmentInteraction(DevelopmentProcessAndItsActivities developmentProcessAndItsActivities) {
 
     }
 

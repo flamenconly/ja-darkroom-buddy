@@ -1,9 +1,11 @@
 package com.thomasringhofer.jadarkroombuddy.model;
 
+import java.io.Serializable;
+
 /**
  * Created by Thomas on 03.03.2018.
  */
-public class DevelopmentProcessAndItsActivities {
+public class DevelopmentProcessAndItsActivities implements Serializable {
 
     public String getTitle() {
         return title;

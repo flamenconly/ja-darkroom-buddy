@@ -1,37 +1,33 @@
 package com.thomasringhofer.jadarkroombuddy;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.thomasringhofer.jadarkroombuddy.database.AppDatabase;
 import com.thomasringhofer.jadarkroombuddy.model.DevelopmentProcessAndItsActivities;
+
+import java.util.List;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link RecentDevelopmentProcessesFragment.OnFragmentInteractionListener} interface
+ * {@link RecentDevelopmentProcessesFragment.OnListFragmentInteractionListener} interface
  * to handle interaction events.
  * Use the {@link RecentDevelopmentProcessesFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class RecentDevelopmentProcessesFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_TITLE = "arg_title";
-    private static final String ARG_DESCRIPTION = "arg_description";
-    private static final String ARG_DURATION = "arg_duration";
 
+    private RecyclerView recyclerView;
 
-    private String mTitle;
-    private String mDescription;
-    private String mDuration;
-
-    private OnFragmentInteractionListener mListener;
+    private OnListFragmentInteractionListener mListener;
 
     public RecentDevelopmentProcessesFragment() {
         // Required empty public constructor
@@ -41,52 +37,53 @@ public class RecentDevelopmentProcessesFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param developmentProcessAndItsActivities Parameter 1.
+     * @param
      * @return A new instance of fragment RecentDevelopmentProcessesFragment.
      */
-    // TODO: Rename and change types and number of parameters
-    public static RecentDevelopmentProcessesFragment newInstance(DevelopmentProcessAndItsActivities developmentProcessAndItsActivities) {
+    public static RecentDevelopmentProcessesFragment newInstance() {
         RecentDevelopmentProcessesFragment fragment = new RecentDevelopmentProcessesFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_TITLE, developmentProcessAndItsActivities.getTitle());
-        args.putString(ARG_DESCRIPTION, developmentProcessAndItsActivities.getDescription());
-        args.putString(ARG_DURATION, developmentProcessAndItsActivities.getDuration());
-        fragment.setArguments(args);
+
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mTitle = getArguments().getString(ARG_TITLE);
-            mDescription = getArguments().getString(ARG_DESCRIPTION);
-            mDuration = getArguments().getString(ARG_DURATION);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_recent_development_processes, container, false);
+        View view =  inflater.inflate(R.layout.fragment_developmentprocess_list, container, false);
+
+        // Set the adapter
+        if (view instanceof RecyclerView) {
+            Context context = view.getContext();
+            recyclerView = (RecyclerView) view;
+            recyclerView.setAdapter(new MyDevelopmentProcessRecyclerViewAdapter(mListener));
+            recyclerView.setLayoutManager(new LinearLayoutManager(context));
+
+            new Thread(new LoadAllDevelopmentProcessTask(recyclerView)).start();
+        }
+
+        return view;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
+    @Override
+    public void onResume() {
+        super.onResume();
+        new Thread(new LoadAllDevelopmentProcessTask(recyclerView)).start();
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+        if (context instanceof OnListFragmentInteractionListener) {
+            mListener = (OnListFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
+                    + " must implement OnFragmentListInteractionListener");
         }
     }
 
@@ -106,8 +103,30 @@ public class RecentDevelopmentProcessesFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+    public interface OnListFragmentInteractionListener {
+        void onFragmentInteraction(DevelopmentProcessAndItsActivities developmentProcessAndItsActivities);
+    }
+
+    private class LoadAllDevelopmentProcessTask implements Runnable{
+
+        private final RecyclerView recyclerView;
+
+        public LoadAllDevelopmentProcessTask(final RecyclerView recyclerView){
+            if(recyclerView==null) throw new IllegalArgumentException();
+            this.recyclerView = recyclerView;
+        }
+
+        @Override
+        public void run() {
+
+            final List<DevelopmentProcessAndItsActivities> items = AppDatabase.GetInstance().getRecentProcessAndItsActivities();
+
+            recyclerView.post(new Runnable() {
+                @Override
+                public void run() {
+                    ((MyDevelopmentProcessRecyclerViewAdapter)recyclerView.getAdapter()).setItems(items);
+                }
+            });
+        }
     }
 }

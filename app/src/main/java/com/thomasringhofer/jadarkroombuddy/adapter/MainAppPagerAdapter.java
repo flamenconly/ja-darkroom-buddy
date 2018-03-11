@@ -28,7 +28,7 @@ public class MainAppPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch(position){
             case 0:
-                return RecentDevelopmentProcessesFragment.newInstance("Text1","Text2");
+                return RecentDevelopmentProcessesFragment.newInstance();
             case 1:
                 return WorkingSolutionsFragment.newInstance("","");
         }

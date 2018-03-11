@@ -11,5 +11,9 @@
     <style name="AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    
+    <style name="ListItemTitle" parent="TextAppearance.AppCompat.Title">
 
+    </style>
+    
 </resources>

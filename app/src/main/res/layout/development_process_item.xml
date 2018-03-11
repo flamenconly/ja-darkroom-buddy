@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    >
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
         <variable
@@ -19,22 +16,33 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
+            android:padding="@dimen/activity_horizontal_margin"
             >
 
+
             <TextView
+                android:id="@+id/development_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@{process.title}"
+                style="@style/ListItemTitle"
                 />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/development_duration"
+                android:layout_toRightOf="@id/development_title"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@{process.duration}"
+                android:textAlignment="viewEnd"
                 />
 
+
+
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/development_description"
+                android:layout_below="@id/development_title"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@{process.description}"
                 />

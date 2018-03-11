@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import com.thomasringhofer.jadarkroombuddy.database.AppDatabase;
 import com.thomasringhofer.jadarkroombuddy.database.DevelopmentProcessDao;
 import com.thomasringhofer.jadarkroombuddy.entities.DevelopmentProcess;
+import com.thomasringhofer.jadarkroombuddy.model.DevelopmentProcessAndItsActivities;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -74,7 +75,6 @@ public class DevelopmentProcessFragment extends Fragment {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
 
-            new Thread(new LoadAllDevelopmentProcessTask(recyclerView)).start();
         }
         return view;
     }
@@ -82,7 +82,6 @@ public class DevelopmentProcessFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        new Thread(new LoadAllDevelopmentProcessTask(recyclerView)).start();
     }
 
     @Override
@@ -114,34 +113,8 @@ public class DevelopmentProcessFragment extends Fragment {
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(DevelopmentProcess item);
+        void onListFragmentInteraction(DevelopmentProcessAndItsActivities item);
     }
 
-    private class LoadAllDevelopmentProcessTask implements Runnable{
 
-        private final RecyclerView recyclerView;
-
-        public LoadAllDevelopmentProcessTask(final RecyclerView recyclerView){
-            if(recyclerView==null) throw new IllegalArgumentException();
-            this.recyclerView = recyclerView;
-        }
-
-        @Override
-        public void run() {
-
-            DevelopmentProcessDao dao = AppDatabase.GetInstance().developmentProcessDao();
-            final List<DevelopmentProcess> items = new ArrayList<>();
-
-            for (DevelopmentProcess process:dao.LoadAllProcesses()) {
-                items.add(process);
-            }
-
-            recyclerView.post(new Runnable() {
-                @Override
-                public void run() {
-                    recyclerView.setAdapter(new MyDevelopmentProcessRecyclerViewAdapter(items, mListener));
-                }
-            });
-        }
-    }
 }
