@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.thomasringhofer.jadarkroombuddy.model.DevelopmentProcessAndItsActivities;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -20,12 +22,14 @@ import android.view.ViewGroup;
 public class RecentDevelopmentProcessesFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private static final String ARG_TITLE = "arg_title";
+    private static final String ARG_DESCRIPTION = "arg_description";
+    private static final String ARG_DURATION = "arg_duration";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+
+    private String mTitle;
+    private String mDescription;
+    private String mDuration;
 
     private OnFragmentInteractionListener mListener;
 
@@ -37,16 +41,16 @@ public class RecentDevelopmentProcessesFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
+     * @param developmentProcessAndItsActivities Parameter 1.
      * @return A new instance of fragment RecentDevelopmentProcessesFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static RecentDevelopmentProcessesFragment newInstance(String param1, String param2) {
+    public static RecentDevelopmentProcessesFragment newInstance(DevelopmentProcessAndItsActivities developmentProcessAndItsActivities) {
         RecentDevelopmentProcessesFragment fragment = new RecentDevelopmentProcessesFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putString(ARG_TITLE, developmentProcessAndItsActivities.getTitle());
+        args.putString(ARG_DESCRIPTION, developmentProcessAndItsActivities.getDescription());
+        args.putString(ARG_DURATION, developmentProcessAndItsActivities.getDuration());
         fragment.setArguments(args);
         return fragment;
     }
@@ -55,8 +59,9 @@ public class RecentDevelopmentProcessesFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            mTitle = getArguments().getString(ARG_TITLE);
+            mDescription = getArguments().getString(ARG_DESCRIPTION);
+            mDuration = getArguments().getString(ARG_DURATION);
         }
     }
 
