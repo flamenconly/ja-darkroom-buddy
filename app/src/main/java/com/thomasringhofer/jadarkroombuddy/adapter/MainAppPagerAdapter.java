@@ -4,6 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.thomasringhofer.jadarkroombuddy.FilmFragment;
 import com.thomasringhofer.jadarkroombuddy.RecentDevelopmentProcessesFragment;
 import com.thomasringhofer.jadarkroombuddy.WorkingSolutionsFragment;
 
@@ -13,7 +14,7 @@ import com.thomasringhofer.jadarkroombuddy.WorkingSolutionsFragment;
 
 public class MainAppPagerAdapter extends FragmentPagerAdapter {
 
-    static final int NUM_OF_ELEMENTS = 2;
+    static final int NUM_OF_ELEMENTS = 3;
 
     public MainAppPagerAdapter(FragmentManager fragmentManager){
         super(fragmentManager);
@@ -31,6 +32,8 @@ public class MainAppPagerAdapter extends FragmentPagerAdapter {
                 return RecentDevelopmentProcessesFragment.newInstance();
             case 1:
                 return WorkingSolutionsFragment.newInstance("","");
+            case 2:
+                return FilmFragment.newInstance("","");
         }
         return null;
     }

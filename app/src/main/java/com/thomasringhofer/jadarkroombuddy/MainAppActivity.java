@@ -17,7 +17,8 @@ import butterknife.ButterKnife;
 
 public class MainAppActivity extends AppCompatActivity implements
         RecentDevelopmentProcessesFragment.OnListFragmentInteractionListener,
-        WorkingSolutionsFragment.OnFragmentInteractionListener {
+        WorkingSolutionsFragment.OnFragmentInteractionListener,
+        FilmFragment.OnFragmentInteractionListener{
 
     private MainAppPagerAdapter mainAppPagerAdapter;
 
@@ -51,6 +52,7 @@ public class MainAppActivity extends AppCompatActivity implements
         // Setting Tab Icons
         myTabLayout.getTabAt(0).setIcon(R.drawable.ic_content_book_2_selected);
         myTabLayout.getTabAt(1).setIcon(R.drawable.ic_beaker_science);
+        myTabLayout.getTabAt(2).setIcon(R.drawable.ic_receipt_1);
 
         myTabLayout.addOnTabSelectedListener(new MyOnTabSelectedListener());
 
@@ -89,6 +91,8 @@ public class MainAppActivity extends AppCompatActivity implements
                 case 1:
                     tab.setIcon(R.drawable.ic_beaker_science_selected);
                     break;
+                case 2:
+                    tab.setIcon(R.drawable.ic_receipt_1_selected);
                 default:
             }
 
@@ -103,6 +107,9 @@ public class MainAppActivity extends AppCompatActivity implements
                     break;
                 case 1:
                     tab.setIcon(R.drawable.ic_beaker_science);
+                    break;
+                case 2:
+                    tab.setIcon(R.drawable.ic_receipt_1);
                     break;
                 default:
             }
