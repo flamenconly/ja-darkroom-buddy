@@ -12,26 +12,16 @@
             android:padding="@dimen/activity_horizontal_margin"
             >
 
-
             <TextView
-                android:id="@+id/development_title"
+                android:id="@+id/film_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/ListItemTitle"
                 />
 
             <TextView
-                android:id="@+id/development_duration"
-                android:layout_toRightOf="@id/development_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAlignment="viewEnd"
-                style="@style/ListItemTitle"
-                />
-
-            <TextView
-                android:id="@+id/development_description"
-                android:layout_below="@id/development_title"
+                android:id="@+id/film_description"
+                android:layout_below="@id/film_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 />

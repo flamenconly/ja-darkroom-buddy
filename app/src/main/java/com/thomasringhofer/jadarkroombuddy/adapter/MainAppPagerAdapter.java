@@ -33,7 +33,7 @@ public class MainAppPagerAdapter extends FragmentPagerAdapter {
             case 1:
                 return WorkingSolutionsFragment.newInstance("","");
             case 2:
-                return FilmFragment.newInstance("","");
+                return FilmFragment.newInstance();
         }
         return null;
     }

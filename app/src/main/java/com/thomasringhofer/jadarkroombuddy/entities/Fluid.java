@@ -2,6 +2,7 @@ package com.thomasringhofer.jadarkroombuddy.entities;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
@@ -37,6 +38,7 @@ public class Fluid {
 
     public Fluid(){}
 
+    @Ignore
     public Fluid(String title){
         this.title = title;
     }

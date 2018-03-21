@@ -25,7 +25,7 @@ import java.util.List;
 /**
  * Created by Thomas on 11.02.2018.
  */
-@Database(entities = {DevelopmentProcess.class,WorkingSolution.class,Fluid.class,WorkingSolutionHasFluid.class,Film.class},version = 1)
+@Database(entities = {DevelopmentProcess.class,WorkingSolution.class,Fluid.class,WorkingSolutionHasFluid.class,Film.class},version = 1,exportSchema = true)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static AppDatabase INSTANCE;
@@ -164,7 +164,7 @@ public abstract class AppDatabase extends RoomDatabase {
      * @return List with {@link DevelopmentProcessAndItsActivities}
      */
     public List<DevelopmentProcessAndItsActivities> getRecentProcessAndItsActivities(){
-
+        // TODO: Replace with true data.
         DevelopmentProcessAndItsActivities item = new DevelopmentProcessAndItsActivities();
         item.setTitle("C41 B/W");
         item.setFilm("T-Max, 3200");
@@ -174,6 +174,28 @@ public abstract class AppDatabase extends RoomDatabase {
         list.add(item);
 
         return list;
+    }
+
+    public List<Film> getFilms(){
+        // TODO: Replace with true data.
+        Film film = new Film();
+        film.setName("Kodak T-Max 400");
+        film.setIso(400);
+        film.setType("b/w");
+        film.setId(1);
+
+        List<Film> films = new ArrayList<>();
+        films.add(film);
+
+        film = new Film();
+        film.setName("Kodak T-Max 3200");
+        film.setIso(3200);
+        film.setType("b/w");
+        film.setId(2);
+
+        films.add(film);
+
+        return films;
     }
 
     public abstract DevelopmentProcessDao developmentProcessDao();

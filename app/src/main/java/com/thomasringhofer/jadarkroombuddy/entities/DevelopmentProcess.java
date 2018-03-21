@@ -3,6 +3,7 @@ package com.thomasringhofer.jadarkroombuddy.entities;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
@@ -12,10 +13,12 @@ import com.google.gson.Gson;
  * Representation of a Developmentprocess.
  * Created by Thomas on 09.02.2018.
  */
-@Entity(tableName = "development_process",foreignKeys = @ForeignKey(entity = Film.class,
-        parentColumns = "id",
-        childColumns = "film_id",
-        onDelete = ForeignKey.SET_NULL))
+@Entity(tableName = "development_process",
+        foreignKeys = {@ForeignKey(entity = Film.class,
+            parentColumns = "id",
+            childColumns = "film_id",
+            onDelete = ForeignKey.SET_NULL)},
+        indices = {@Index(name="idx_fk_film_id",value = "film_id")})
 public class DevelopmentProcess implements JsonSerializable<DevelopmentProcess> {
 
     public static String TYPE_NEGATIVE = "Negative";

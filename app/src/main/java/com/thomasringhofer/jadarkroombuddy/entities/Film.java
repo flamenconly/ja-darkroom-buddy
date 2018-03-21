@@ -66,6 +66,6 @@ public class Film {
 
     @Override
     public String toString() {
-        return String.format("%s %d",getName(),getIso());
+        return String.format("%s %s",getName(),getType());
     }
 }

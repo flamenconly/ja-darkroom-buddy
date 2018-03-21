@@ -10,6 +10,7 @@ import android.view.Menu;
 
 import com.thomasringhofer.jadarkroombuddy.adapter.MainAppPagerAdapter;
 import com.thomasringhofer.jadarkroombuddy.database.AppDatabase;
+import com.thomasringhofer.jadarkroombuddy.entities.Film;
 import com.thomasringhofer.jadarkroombuddy.model.DevelopmentProcessAndItsActivities;
 
 import butterknife.BindView;
@@ -69,12 +70,17 @@ public class MainAppActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onFragmentInteraction(Uri uri) {
+    public void onFragmentInteraction(Film film) {
 
     }
 
     @Override
     public void onFragmentInteraction(DevelopmentProcessAndItsActivities developmentProcessAndItsActivities) {
+
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri){
 
     }
 
