@@ -9,6 +9,7 @@ import android.support.annotation.NonNull;
 
 import com.thomasringhofer.jadarkroombuddy.entities.DevelopmentProcess;
 import com.thomasringhofer.jadarkroombuddy.entities.DevelopmentProcessFactory;
+import com.thomasringhofer.jadarkroombuddy.entities.Film;
 import com.thomasringhofer.jadarkroombuddy.entities.Fluid;
 import com.thomasringhofer.jadarkroombuddy.entities.FluidInUse;
 import com.thomasringhofer.jadarkroombuddy.entities.WorkingSolution;
@@ -24,7 +25,7 @@ import java.util.List;
 /**
  * Created by Thomas on 11.02.2018.
  */
-@Database(entities = {DevelopmentProcess.class,WorkingSolution.class,Fluid.class,WorkingSolutionHasFluid.class},version = 1)
+@Database(entities = {DevelopmentProcess.class,WorkingSolution.class,Fluid.class,WorkingSolutionHasFluid.class,Film.class},version = 1)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static AppDatabase INSTANCE;
@@ -165,9 +166,9 @@ public abstract class AppDatabase extends RoomDatabase {
     public List<DevelopmentProcessAndItsActivities> getRecentProcessAndItsActivities(){
 
         DevelopmentProcessAndItsActivities item = new DevelopmentProcessAndItsActivities();
-        item.setTitle("C41 Black White, T-Max 3200");
+        item.setTitle("C41 B/W");
+        item.setFilm("T-Max, 3200");
         item.setDescription("Test text <s>T-Max 3200</s> plus anything and sowieso.");
-        item.setDuration("'5''20");
 
         List<DevelopmentProcessAndItsActivities> list = new ArrayList<>();
         list.add(item);
@@ -182,4 +183,6 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract FluidDao fluidDao();
 
     public abstract WorkingSolutionHasFluidDao workingSolutionHasFluidDao();
+
+    public abstract  FilmDao filmDao();
 }

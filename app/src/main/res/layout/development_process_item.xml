@@ -33,8 +33,9 @@
                 android:layout_toRightOf="@id/development_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@{process.duration}"
+                android:text="@{process.film}"
                 android:textAlignment="viewEnd"
+                style="@style/ListItemTitle"
                 />
 
 

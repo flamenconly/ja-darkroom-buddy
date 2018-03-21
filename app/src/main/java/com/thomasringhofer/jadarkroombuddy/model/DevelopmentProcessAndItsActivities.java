@@ -1,11 +1,9 @@
 package com.thomasringhofer.jadarkroombuddy.model;
 
-import java.io.Serializable;
-
 /**
  * Created by Thomas on 03.03.2018.
  */
-public class DevelopmentProcessAndItsActivities implements Serializable {
+public class DevelopmentProcessAndItsActivities {
 
     public String getTitle() {
         return title;
@@ -23,19 +21,15 @@ public class DevelopmentProcessAndItsActivities implements Serializable {
         this.description = description;
     }
 
-    public String getDuration() {
-        return duration;
-    }
+    public String getFilm() { return film; }
 
-    public void setDuration(String duration) {
-        this.duration = duration;
-    }
-
-    private String duration;
+    public void setFilm(String film) {this.film = film; }
 
     private String description;
 
     private String title;
+
+    private String film;
 
 
 }

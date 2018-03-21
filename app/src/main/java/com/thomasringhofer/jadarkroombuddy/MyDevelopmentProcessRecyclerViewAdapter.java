@@ -47,7 +47,7 @@ public class MyDevelopmentProcessRecyclerViewAdapter extends RecyclerView.Adapte
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.setProcess(items.get(position));
 
-        holder.durationView.setText(holder.getProcess().getDuration());
+        holder.durationView.setText(holder.getProcess().getFilm());
         holder.titleView.setText(holder.getProcess().getTitle());
         holder.descriptionView.setText(holder.getProcess().getDescription());
 

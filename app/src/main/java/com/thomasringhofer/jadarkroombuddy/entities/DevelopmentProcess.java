@@ -2,6 +2,7 @@ package com.thomasringhofer.jadarkroombuddy.entities;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
@@ -11,7 +12,10 @@ import com.google.gson.Gson;
  * Representation of a Developmentprocess.
  * Created by Thomas on 09.02.2018.
  */
-@Entity(tableName = "development_process")
+@Entity(tableName = "development_process",foreignKeys = @ForeignKey(entity = Film.class,
+        parentColumns = "id",
+        childColumns = "film_id",
+        onDelete = ForeignKey.SET_NULL))
 public class DevelopmentProcess implements JsonSerializable<DevelopmentProcess> {
 
     public static String TYPE_NEGATIVE = "Negative";
@@ -20,6 +24,8 @@ public class DevelopmentProcess implements JsonSerializable<DevelopmentProcess> 
     @PrimaryKey(autoGenerate = true)
     @NonNull
     private long id;
+
+    private Long film_id;
 
     @NonNull
     @ColumnInfo(name = "type")
@@ -72,6 +78,14 @@ public class DevelopmentProcess implements JsonSerializable<DevelopmentProcess> 
 
     public void setCreationTimestamp(Long creationTimestamp) {
         this.creationTimestamp = creationTimestamp;
+    }
+
+    public Long getFilm_id() {
+        return film_id;
+    }
+
+    public void setFilm_id(Long film_id) {
+        this.film_id = film_id;
     }
 
     /**
