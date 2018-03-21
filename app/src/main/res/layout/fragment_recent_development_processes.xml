@@ -5,15 +5,6 @@
     android:layout_height="match_parent"
     tools:context="com.thomasringhofer.jadarkroombuddy.RecentDevelopmentProcessesFragment">
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/floatingActionButtonNewProcess"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:src="@drawable/ic_add_circle_1"
-        android:layout_gravity="bottom|right"
-        android:layout_marginBottom="@dimen/activity_horizontal_margin"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"
-        />
+
 
 </FrameLayout>

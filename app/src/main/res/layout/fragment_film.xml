@@ -1,24 +1,8 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.thomasringhofer.jadarkroombuddy.FilmFragment">
-
-    <LinearLayout
-        android:id="@+id/filmListContainer"
+ <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical" />
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/floatingActionButtonNewFilm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:src="@drawable/ic_add_circle_1"
-        android:layout_gravity="end|bottom"
-        android:layout_marginBottom="@dimen/activity_horizontal_margin"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"
-        />
+        tools:context="com.thomasringhofer.jadarkroombuddy.FilmFragment">
 
 </FrameLayout>
+

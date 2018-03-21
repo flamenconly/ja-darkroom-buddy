@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -59,16 +60,14 @@ public class FilmFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        View parent = container.findViewById(R.id.filmListContainer);
-
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_film_list, (ViewGroup)parent, false);
+        View view = inflater.inflate(R.layout.fragment_film_list, container, false);
 
-        if(view instanceof RecyclerView){
+        // Retrieve RecyclerView
+        recyclerView = view.findViewById(R.id.film_list);
+
+        if(recyclerView != null){
             Context context = view.getContext();
-
-            recyclerView = (RecyclerView) view;
             recyclerView.setAdapter(new FilmRecyclerViewAdapter(mListener));
             recyclerView.setLayoutManager(new LinearLayoutManager(context));
 
