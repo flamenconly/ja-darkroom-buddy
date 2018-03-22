@@ -177,24 +177,8 @@ public abstract class AppDatabase extends RoomDatabase {
     }
 
     public List<Film> getFilms(){
-        // TODO: Replace with true data.
-        Film film = new Film();
-        film.setName("Kodak T-Max 400");
-        film.setIso(400);
-        film.setType("b/w");
-        film.setId(1);
 
-        List<Film> films = new ArrayList<>();
-        films.add(film);
-
-        film = new Film();
-        film.setName("Kodak T-Max 3200");
-        film.setIso(3200);
-        film.setType("b/w");
-        film.setId(2);
-
-        films.add(film);
-
+        List<Film> films = filmDao().getAll();
         return films;
     }
 
@@ -206,5 +190,5 @@ public abstract class AppDatabase extends RoomDatabase {
 
     public abstract WorkingSolutionHasFluidDao workingSolutionHasFluidDao();
 
-    public abstract  FilmDao filmDao();
+    public abstract FilmDao filmDao();
 }

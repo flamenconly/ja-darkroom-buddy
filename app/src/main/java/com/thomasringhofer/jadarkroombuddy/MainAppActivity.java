@@ -57,7 +57,7 @@ public class MainAppActivity extends AppCompatActivity implements
 
         myTabLayout.addOnTabSelectedListener(new MyOnTabSelectedListener());
 
-        // Setup Toolbar
+        // Setup toolbar
         setSupportActionBar(toolbar);
     }
 

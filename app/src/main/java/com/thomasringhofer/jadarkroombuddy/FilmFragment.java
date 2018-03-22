@@ -1,6 +1,7 @@
 package com.thomasringhofer.jadarkroombuddy;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -8,6 +9,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,19 +72,25 @@ public class FilmFragment extends Fragment {
             Context context = view.getContext();
             recyclerView.setAdapter(new FilmRecyclerViewAdapter(mListener));
             recyclerView.setLayoutManager(new LinearLayoutManager(context));
-
-            new Thread(new LoadAllFilmsTask(recyclerView)).start();
         }
+
+        FloatingActionButton fab = view.findViewById(R.id.floatingActionButtonNewFilm);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(),NewFilmActivity.class);
+                startActivity(intent);
+            }
+        });
 
         return view;
 
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Film film) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(film);
-        }
+    @Override
+    public void onResume() {
+        new Thread(new LoadAllFilmsTask(recyclerView)).start();
+        super.onResume();
     }
 
     @Override
