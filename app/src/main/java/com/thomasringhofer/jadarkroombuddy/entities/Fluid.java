@@ -3,6 +3,7 @@ package com.thomasringhofer.jadarkroombuddy.entities;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
+import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
@@ -10,7 +11,7 @@ import android.support.annotation.NonNull;
  * Created by Thomas on 19.02.2018.
  * Represents a Fluid
  */
-@Entity(tableName = "fluid")
+@Entity(tableName = "fluid",indices = {@Index(value="title",name="idx_uq_fluid_title",unique = true)})
 public class Fluid {
 
     @PrimaryKey(autoGenerate = true)

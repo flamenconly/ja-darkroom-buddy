@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "507bbefb1e349dcb2a4a9eb7682b84f0",
+    "identityHash": "02174e10896e47cfef573f3d67c28dad",
     "entities": [
       {
         "tableName": "development_process",
@@ -133,7 +133,16 @@
           ],
           "autoGenerate": true
         },
-        "indices": [],
+        "indices": [
+          {
+            "name": "idx_uq_fluid_title",
+            "unique": true,
+            "columnNames": [
+              "title"
+            ],
+            "createSql": "CREATE UNIQUE INDEX `idx_uq_fluid_title` ON `${TABLE_NAME}` (`title`)"
+          }
+        ],
         "foreignKeys": []
       },
       {
@@ -276,7 +285,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"507bbefb1e349dcb2a4a9eb7682b84f0\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"02174e10896e47cfef573f3d67c28dad\")"
     ]
   }
 }

@@ -93,4 +93,6 @@
         <item>color</item>
     </string-array>
 
+    <string name="name_already_exists">The given name already exists!</string>
+
 </resources>

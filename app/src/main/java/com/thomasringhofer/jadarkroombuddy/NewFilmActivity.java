@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.thomasringhofer.jadarkroombuddy.common.CaseInsensitiveSet;
 import com.thomasringhofer.jadarkroombuddy.common.TextValidator;
 import com.thomasringhofer.jadarkroombuddy.database.AppDatabase;
 import com.thomasringhofer.jadarkroombuddy.entities.Film;
@@ -72,7 +73,7 @@ public class NewFilmActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()) {
-            case R.id.save_film:
+            case R.id.save_action
                 if(editName.getError()!=null){
                     return false;
                 }
@@ -143,7 +144,7 @@ public class NewFilmActivity extends AppCompatActivity {
                 @Override
                 public void run() {
                     AppDatabase database = AppDatabase.GetInstance();
-                    existingNames = new HashSet<>(database.filmDao().getFilmNames());
+                    existingNames = new CaseInsensitiveSet(database.filmDao().getFilmNames());
                 }
             }).start();
         }
@@ -159,7 +160,7 @@ public class NewFilmActivity extends AppCompatActivity {
 
             if(existingNames!=null) {
                 if (existingNames.contains(text)) {
-                    editText.setError("A film with this name already exists!");
+                    editText.setError(getString(R.string.name_already_exists));
                 }
             }
         }

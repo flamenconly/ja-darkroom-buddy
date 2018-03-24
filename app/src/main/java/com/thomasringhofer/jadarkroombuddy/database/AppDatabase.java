@@ -31,12 +31,8 @@ public abstract class AppDatabase extends RoomDatabase {
     private static AppDatabase INSTANCE;
 
     public static AppDatabase CreateInstance(Context context){
-        //TODO: Remove when developing is done to release mode
-        //if(INSTANCE == null)INSTANCE = Room.databaseBuilder(context,AppDatabase.class,"productive").build();
-        // For developing purposes only memory database
-        if(INSTANCE == null) {
-            INSTANCE = Room.inMemoryDatabaseBuilder(context, AppDatabase.class).build();
-        }
+        if(INSTANCE == null)
+            INSTANCE = Room.databaseBuilder(context,AppDatabase.class,"productive").build();
 
         return INSTANCE;
     }
@@ -44,25 +40,6 @@ public abstract class AppDatabase extends RoomDatabase {
     public static AppDatabase GetInstance(){
         if(INSTANCE == null) throw new IllegalStateException("Call CreateInstance before using GetInstance");
         return INSTANCE;
-    }
-
-    public void recreateData(){
-
-        DevelopmentProcess processes;
-        DevelopmentProcessFactory factory = new DevelopmentProcessFactory();
-
-        processes = factory.CreateDefaultNegativeDevelopmentProcess();
-        processes.setTitle("First Process");
-        GetInstance().developmentProcessDao().InsertProcesses(processes);
-
-        processes = factory.CreateDefaultNegativeDevelopmentProcess();
-        processes.setTitle("Second Process");
-        GetInstance().developmentProcessDao().InsertProcesses(processes);
-
-        processes = factory.CreateDefaultPositiveDevelopmentProcess();
-        processes.setTitle("Third Process");
-        GetInstance().developmentProcessDao().InsertProcesses(processes);
-
     }
 
     /**

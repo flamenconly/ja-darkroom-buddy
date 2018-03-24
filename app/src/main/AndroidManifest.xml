@@ -21,7 +21,8 @@
         <activity
             android:name=".NewFilmActivity"
             android:label="@string/title_activity_new_film"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".NewFluidActivity"></activity>
     </application>
 
 </manifest>

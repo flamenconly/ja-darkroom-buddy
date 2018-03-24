@@ -27,7 +27,7 @@ public interface FilmDao {
     @Delete
     void deleteFilm(Film film);
 
-    @Query(value = "select * from film")
+    @Query(value = "select * from film order by name")
     List<Film> getAll();
 
     @Query(value = "select * from film where name=:name")
