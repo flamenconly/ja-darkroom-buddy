@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout  xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/layout_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/film_list"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/fluid_list"
+        android:name="com.thomasringhofer.jadarkroombuddy.FluidFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layoutManager="LinearLayoutManager"
-        tools:context="com.thomasringhofer.jadarkroombuddy.FilmFragment"
-        tools:listitem="@layout/film_list_item"
-        >
-
-    </android.support.v7.widget.RecyclerView>
+        tools:context="com.thomasringhofer.jadarkroombuddy.FluidFragment"
+        tools:listitem="@layout/fluid_list_item" />
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/floatingActionButtonNewFilm"
+        android:id="@+id/floatingActionButtonNewFluid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
@@ -29,5 +28,6 @@
         android:foregroundTint="@color/cardview_dark_background"
         app:borderWidth="0dp"
         android:layout_marginRight="16dp"
-    />
+        />
 </android.support.design.widget.CoordinatorLayout>
+

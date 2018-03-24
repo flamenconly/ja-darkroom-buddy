@@ -93,6 +93,14 @@
         <item>color</item>
     </string-array>
 
+    <string-array name="fluid_type_values">
+        <item>film developer</item>
+        <item>film fixer</item>
+        <item>paper developer</item>
+        <item>paper fixer</item>
+        <item>other</item>
+    </string-array>
+
     <string name="name_already_exists">The given name already exists!</string>
 
 </resources>

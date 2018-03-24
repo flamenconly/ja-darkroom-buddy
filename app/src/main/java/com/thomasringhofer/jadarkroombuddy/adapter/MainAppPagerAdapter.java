@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.thomasringhofer.jadarkroombuddy.FilmFragment;
+import com.thomasringhofer.jadarkroombuddy.FluidFragment;
 import com.thomasringhofer.jadarkroombuddy.RecentDevelopmentProcessesFragment;
 import com.thomasringhofer.jadarkroombuddy.WorkingSolutionsFragment;
 
@@ -31,7 +32,7 @@ public class MainAppPagerAdapter extends FragmentPagerAdapter {
             case 0:
                 return RecentDevelopmentProcessesFragment.newInstance();
             case 1:
-                return WorkingSolutionsFragment.newInstance("","");
+                return FluidFragment.newInstance();
             case 2:
                 return FilmFragment.newInstance();
         }

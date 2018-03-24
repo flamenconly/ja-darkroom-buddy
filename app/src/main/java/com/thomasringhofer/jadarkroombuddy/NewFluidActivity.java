@@ -6,7 +6,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import com.thomasringhofer.jadarkroombuddy.common.AsynchronousHandler;
 import com.thomasringhofer.jadarkroombuddy.common.CaseInsensitiveSet;
@@ -26,6 +28,9 @@ public class NewFluidActivity extends AppCompatActivity implements AsynchronousH
     @BindView(R.id.editName)
     EditText editName;
 
+    @BindView(R.id.editType)
+    Spinner editType;
+
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
@@ -41,6 +46,10 @@ public class NewFluidActivity extends AppCompatActivity implements AsynchronousH
         editName.addTextChangedListener(new TitleTextValidator(editName));
         setSupportActionBar(toolbar);
 
+        ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(this, R.array.fluid_type_values, android.R.layout.simple_spinner_item);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        editType.setAdapter(spinnerAdapter);
     }
 
     @Override
@@ -70,7 +79,7 @@ public class NewFluidActivity extends AppCompatActivity implements AsynchronousH
     @Override
     public void onSuccessCallback() {
 
-        view.post(new Runnable() {
+        getCurrentFocus().post(new Runnable() {
             @Override
             public void run() {
                 onBackPressed();
@@ -82,6 +91,8 @@ public class NewFluidActivity extends AppCompatActivity implements AsynchronousH
     private boolean saveItem(){
 
         Fluid item = new Fluid();
+        item.setTitle(editName.getText().toString());
+        item.setType(editType.getSelectedItem().toString());
 
         new Thread(new SaveItemTask(item,this)).start();
 
@@ -140,6 +151,7 @@ public class NewFluidActivity extends AppCompatActivity implements AsynchronousH
         protected boolean itemCanBeSaved(Fluid item) {
 
             AppDatabase db = AppDatabase.GetInstance();
+            if(item.getTitle()==null || item.getType()==null)return false;
 
             return db.fluidDao().getItemByTitle(item.getTitle()) == null;
         }

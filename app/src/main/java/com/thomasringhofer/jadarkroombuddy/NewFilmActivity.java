@@ -15,7 +15,6 @@ import com.thomasringhofer.jadarkroombuddy.common.TextValidator;
 import com.thomasringhofer.jadarkroombuddy.database.AppDatabase;
 import com.thomasringhofer.jadarkroombuddy.entities.Film;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import butterknife.BindView;
@@ -73,7 +72,7 @@ public class NewFilmActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()) {
-            case R.id.save_action
+            case R.id.save_action:
                 if(editName.getError()!=null){
                     return false;
                 }

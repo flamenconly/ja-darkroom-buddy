@@ -11,6 +11,7 @@ import android.view.Menu;
 import com.thomasringhofer.jadarkroombuddy.adapter.MainAppPagerAdapter;
 import com.thomasringhofer.jadarkroombuddy.database.AppDatabase;
 import com.thomasringhofer.jadarkroombuddy.entities.Film;
+import com.thomasringhofer.jadarkroombuddy.entities.Fluid;
 import com.thomasringhofer.jadarkroombuddy.model.DevelopmentProcessAndItsActivities;
 
 import butterknife.BindView;
@@ -19,7 +20,8 @@ import butterknife.ButterKnife;
 public class MainAppActivity extends AppCompatActivity implements
         RecentDevelopmentProcessesFragment.OnListFragmentInteractionListener,
         WorkingSolutionsFragment.OnFragmentInteractionListener,
-        FilmFragment.OnFragmentInteractionListener{
+        FilmFragment.OnFragmentInteractionListener,
+        FluidFragment.OnListFragmentInteractionListener{
 
     private MainAppPagerAdapter mainAppPagerAdapter;
 
@@ -81,6 +83,11 @@ public class MainAppActivity extends AppCompatActivity implements
 
     @Override
     public void onFragmentInteraction(Uri uri){
+
+    }
+
+    @Override
+    public void onListFragmentInteraction(Fluid item) {
 
     }
 
