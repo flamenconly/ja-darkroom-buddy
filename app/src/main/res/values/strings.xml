@@ -88,14 +88,16 @@
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
 
-    <string-array name="film_type_values">
+    <string-array name="color_type_values">
         <item>b/w</item>
         <item>color</item>
     </string-array>
 
     <string-array name="fluid_type_values">
+        <item>film bleacher</item>
         <item>film developer</item>
         <item>film fixer</item>
+        <item>film stabilizer</item>
         <item>paper developer</item>
         <item>paper fixer</item>
         <item>other</item>

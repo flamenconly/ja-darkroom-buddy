@@ -38,6 +38,8 @@ public class FluidRecyclerViewAdapter extends RecyclerView.Adapter<FluidRecycler
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.setItem(items.get(position));
         holder.getNameTextView().setText(items.get(position).getTitle());
+        holder.getTypeTextView().setText(items.get(position).getType());
+        holder.getColorTypeTextView().setText(items.get(position).getColorType());
 
         holder.parentView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,11 +47,23 @@ public class FluidRecyclerViewAdapter extends RecyclerView.Adapter<FluidRecycler
                 if (null != mListener) {
                     // Notify the active callbacks interface (the activity, if the
                     // fragment is attached to one) that an item has been selected.
-                    mListener.onListFragmentInteraction(holder.getItem());
+                    mListener.onListFragmentInteraction(holder.getItem(),false);
                 }
             }
         });
+
+        holder.parentView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                if(null != mListener){
+                    mListener.onListFragmentInteraction(holder.getItem(),true);
+                    return true;
+                }
+                return false;
+            }
+        });
     }
+
 
     @Override
     public int getItemCount() {
@@ -70,6 +84,8 @@ public class FluidRecyclerViewAdapter extends RecyclerView.Adapter<FluidRecycler
 
         private final View parentView;
         private final TextView nameTextView;
+        private final TextView typeTextView;
+        private final TextView colorTypeTextView;
 
         public Fluid getItem() {
             return item;
@@ -89,10 +105,21 @@ public class FluidRecyclerViewAdapter extends RecyclerView.Adapter<FluidRecycler
             return nameTextView;
         }
 
+        public TextView getTypeTextView() {
+            return typeTextView;
+        }
+
+        public TextView getColorTypeTextView() {
+            return colorTypeTextView;
+        }
+
+
         public ViewHolder(View view) {
             super(view);
             parentView = view;
             nameTextView = view.findViewById(R.id.fluid_name);
+            typeTextView = view.findViewById(R.id.fluid_type);
+            colorTypeTextView = view.findViewById(R.id.fluid_color_type);
         }
 
     }

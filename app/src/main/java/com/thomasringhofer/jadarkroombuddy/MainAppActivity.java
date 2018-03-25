@@ -87,7 +87,12 @@ public class MainAppActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onListFragmentInteraction(Fluid item) {
+    public void onListFragmentInteraction(Fluid item, boolean longClick) {
+
+        if(longClick){
+
+
+        }
 
     }
 

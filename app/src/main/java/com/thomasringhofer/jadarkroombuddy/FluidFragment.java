@@ -110,7 +110,7 @@ public class FluidFragment extends Fragment {
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(Fluid item);
+        void onListFragmentInteraction(Fluid item,boolean longClick);
     }
 
     private final class LoadAllFluidsTask implements Runnable{

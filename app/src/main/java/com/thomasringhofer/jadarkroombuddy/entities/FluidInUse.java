@@ -5,7 +5,6 @@ import android.arch.persistence.room.ColumnInfo;
 /**
  * Created by Thomas on 22.02.2018.
  */
-
 public class FluidInUse extends Fluid {
 
     public float getAmount() {

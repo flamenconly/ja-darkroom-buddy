@@ -31,6 +31,9 @@ public class NewFluidActivity extends AppCompatActivity implements AsynchronousH
     @BindView(R.id.editType)
     Spinner editType;
 
+    @BindView(R.id.editColorType)
+    Spinner editColorType;
+
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
@@ -46,10 +49,18 @@ public class NewFluidActivity extends AppCompatActivity implements AsynchronousH
         editName.addTextChangedListener(new TitleTextValidator(editName));
         setSupportActionBar(toolbar);
 
+        // Init Type Spinner
         ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(this, R.array.fluid_type_values, android.R.layout.simple_spinner_item);
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         editType.setAdapter(spinnerAdapter);
+
+        // Init ColorType Spinner
+        spinnerAdapter = ArrayAdapter.createFromResource(this,R.array.color_type_values,android.R.layout.simple_spinner_item);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        editColorType.setAdapter(spinnerAdapter);
+
     }
 
     @Override
@@ -93,6 +104,7 @@ public class NewFluidActivity extends AppCompatActivity implements AsynchronousH
         Fluid item = new Fluid();
         item.setTitle(editName.getText().toString());
         item.setType(editType.getSelectedItem().toString());
+        item.setColorType(editColorType.getSelectedItem().toString());
 
         new Thread(new SaveItemTask(item,this)).start();
 

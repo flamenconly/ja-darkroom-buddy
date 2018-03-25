@@ -11,7 +11,7 @@ import android.support.annotation.NonNull;
  * Created by Thomas on 19.02.2018.
  * Represents a Fluid
  */
-@Entity(tableName = "fluid",indices = {@Index(value="title",name="idx_uq_fluid_title",unique = true),@Index(value="type",name="idx_fluid_type")})
+@Entity(tableName = "fluid",indices = {@Index(value="title",name="idx_uq_fluid_title",unique = true),@Index(value="type",name="idx_fluid_type"),@Index(value="color_type",name="idx_fluid_color_type")})
 public class Fluid {
 
     @PrimaryKey(autoGenerate = true)
@@ -47,9 +47,24 @@ public class Fluid {
     }
 
     @NonNull
+    public String getColorType() {
+        return colorType;
+    }
+
+    public void setColorType(@NonNull String colorType) {
+        this.colorType = colorType;
+    }
+
+    @NonNull
     @ColumnInfo(name="type")
     private String type;
 
+
+
+
+    @NonNull
+    @ColumnInfo(name="color_type")
+    private String colorType;
 
     public Fluid(){}
 

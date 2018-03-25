@@ -51,7 +51,7 @@ public class NewFilmActivity extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
 
-        ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(this, R.array.film_type_values, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(this, R.array.color_type_values, android.R.layout.simple_spinner_item);
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         editType.setAdapter(spinnerAdapter);
