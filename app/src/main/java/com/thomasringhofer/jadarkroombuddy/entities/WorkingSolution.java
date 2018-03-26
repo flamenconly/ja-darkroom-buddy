@@ -2,6 +2,7 @@ package com.thomasringhofer.jadarkroombuddy.entities;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -10,7 +11,12 @@ import android.support.annotation.Nullable;
  * Created by Thomas on 19.02.2018.
  * The Working Solution
  */
-@Entity(tableName = "working_solution")
+@Entity(tableName = "working_solution",
+        indices = {@Index(
+                value="title",
+                name = "idx_uq_working_solution_title",
+                unique = true)
+})
 public class WorkingSolution {
 
     @PrimaryKey(autoGenerate = true)
